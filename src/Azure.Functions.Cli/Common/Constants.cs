@@ -26,6 +26,7 @@ namespace Azure.Functions.Cli.Common
         public const string AzureWebJobsStorage = "AzureWebJobsStorage";
         public const string PackageReferenceElementName = "PackageReference";
         public const string LinuxFxVersion = "linuxFxVersion";
+        public const string CachedRequirementsFile = "cached_requirements.txt";
 
         public static string CliVersion => typeof(Constants).GetTypeInfo().Assembly.GetName().Version.ToString(3);
 
@@ -37,6 +38,16 @@ namespace Azure.Functions.Cli.Common
             { WorkerRuntime.node, new [] { "mcr.microsoft.com/azure-functions/node", "microsoft/azure-functions-node8" } },
             { WorkerRuntime.python, new [] { "mcr.microsoft.com/azure-functions/python", "microsoft/azure-functions-python3.6"  } },
             { WorkerRuntime.powershell, new [] { "mcr.microsoft.com/azure-functions/powershell", "microsoft/azure-functions-powershell" } }
+        };
+
+        public static readonly IEnumerable<string> CachedPythonPackages = new string[]
+        {
+            "azure-functions",
+            "azure-functions-worker",
+            "grpcio",
+            "grpcio-tools",
+            "protobuf",
+            "six"
         };
 
         public static class Errors
